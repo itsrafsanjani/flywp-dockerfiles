@@ -26,7 +26,7 @@ LABEL maintainer="Tareq Hasan <tareq@wedevs.com>"
 # Install build dependencies
 RUN set -e && \
     apk add --no-cache --virtual .build-deps \
-    autoconf g++ make bash sed ghostscript mysql-client imagemagick shadow msmtp unzip linux-headers \
+    autoconf g++ make bash sed ghostscript mysql-client mariadb-connector-c imagemagick shadow msmtp unzip linux-headers \
     freetype-dev icu-dev openssl-dev imagemagick-dev libjpeg-turbo-dev libwebp-dev libpng-dev libzip-dev libssh2-dev git lz4-dev libxpm-dev
 
 # Install PHP extensions using php-extension-installer
@@ -65,7 +65,7 @@ FROM php:${PHP_VERSION}-fpm-alpine
 
 # Install runtime dependencies
 RUN apk add --no-cache \
-    bash sed ghostscript mysql-client imagemagick shadow msmtp unzip linux-headers \
+    bash sed ghostscript mysql-client mariadb-connector-c imagemagick shadow msmtp unzip linux-headers \
     freetype icu openssl imagemagick libjpeg-turbo libwebp libpng libzip libssh2 git libgomp \
     libssh2-dev lz4 libavif libxpm lz4-libs && \
     rm -rf /var/cache/apk/*
